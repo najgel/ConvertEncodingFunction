@@ -6,8 +6,10 @@ using Microsoft.Azure.WebJobs.Extensions.Http;
 using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
 using System.ComponentModel.DataAnnotations;
+using System.IO;
+using System.Net.Http;
 
-namespace Utility.Func.ConvertEncoding
+namespace IN.IP.Common.Func.ConvertEncoding
 {
     public static class ConvertEncodingFunction
     {
@@ -49,11 +51,10 @@ namespace Utility.Func.ConvertEncoding
             }
 
             var outputBytes = Encoding.Convert(srcEncoding: inputEncoding, dstEncoding: encodingOutput, bytes: Convert.FromBase64String(input.Text));
+            var base64String = Convert.ToBase64String(outputBytes);
+            return new FileContentResult(encodingOutput.GetBytes(base64String), "application/octetstream");
 
-            var response = new { text = Convert.ToBase64String(outputBytes) };
-            
-            return new OkObjectResult(response);
-            
+
         }
     }
 
