@@ -53,6 +53,20 @@ namespace IN.IP.Common.Func.ConvertEncoding
             var outputBytes = Encoding.Convert(srcEncoding: inputEncoding, dstEncoding: encodingOutput, bytes: Convert.FromBase64String(input.Text));
             var base64String = Convert.ToBase64String(outputBytes);
             return new FileContentResult(encodingOutput.GetBytes(base64String), "application/octetstream");
+//            var outputBytes = Encoding.Convert(srcEncoding: inputEncoding, dstEncoding: encodingOutput, bytes: Convert.FromBase64String(input.Text));
+            
+  //          log.LogInformation(encodingOutput.GetString(outputBytes));
+
+//            long arrayLength = (long)((4.0d / 3.0d) * outputBytes.Length);
+
+//            if (arrayLength % 4 != 0)
+//            {
+//                arrayLength += 4 - arrayLength % 4;
+//            }
+
+//            char[] base64Array = new char[arrayLength];
+//            Convert.ToBase64CharArray(outputBytes, 0, outputBytes.Length, base64Array, 0);
+//            return new FileContentResult(base64Array.Select(c => (byte)c).ToArray(), "application/octet-stream");
 
 
         }
